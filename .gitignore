@@ -1,0 +1,27 @@
+# Entorno
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Secretos / credenciales
+.env
+
+# Datos sensibles (información fiscal y bancaria)
+data/descargas/
+data/extractos/
+data/salida/
+scratch_excel.json
+*.scratch.json
+*.session.json
+storage_state.json
+.perfil_navegador/
+
+# Sistema operativo / editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
