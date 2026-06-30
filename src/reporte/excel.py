@@ -21,6 +21,7 @@ from openpyxl.utils import get_column_letter
 from config import SALIDA_DIR
 from ..consolidacion.conciliador import Conciliacion
 from ..models import Factura
+from .graficos import agregar_hoja_estadisticas
 
 # Estilos
 _AZUL = "0E7C6B"
@@ -139,5 +140,8 @@ def generar_reporte(
         _formatear_hoja(writer.sheets["Facturas recibidas"], df_facturas)
         if len(df_movs):
             _formatear_hoja(writer.sheets["Movimientos banco"], df_movs)
+
+        # Hoja de graficos/estadisticas (objetos nativos de Excel)
+        agregar_hoja_estadisticas(writer.book, facturas, conciliacion)
 
     return ruta_salida

@@ -126,6 +126,7 @@ def cargar_informe_adquiridas(ruta: str | Path) -> list[Factura]:
     c_valor = _buscar_col(columnas, "afectada") or _buscar_col(columnas, "valor facturado")
     c_num = _buscar_col(columnas, "num_factura") or _buscar_col(columnas, "num factura")
     c_cufe = _buscar_col(columnas, "cufe")
+    c_medio = _buscar_col(columnas, "medios de pago") or _buscar_col(columnas, "medio de pago")
 
     nit_receptor, nombre_receptor = _datos_receptor(df, fila_enc)
 
@@ -147,6 +148,7 @@ def cargar_informe_adquiridas(ruta: str | Path) -> list[Factura]:
             total=total,
             subtotal=total,
             iva=0.0,
+            medio_pago=str(fila.iat[c_medio]).strip() if c_medio is not None and not pd.isna(fila.iat[c_medio]) else None,
             archivo_origen=ruta.name,
             fuente="informe-dian",
         )

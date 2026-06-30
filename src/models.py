@@ -46,9 +46,12 @@ class Factura(BaseModel):
 
     items: list[ItemFactura] = Field(default_factory=list)
 
+    # Medio de pago reportado por la DIAN (Electronicos, Efectivo, etc.)
+    medio_pago: Optional[str] = None
+
     # Trazabilidad
     archivo_origen: Optional[str] = None
-    fuente: str = "xml"  # "xml" | "pdf-openai"
+    fuente: str = "xml"  # "xml" | "pdf-openai" | "informe-dian"
 
     def clave(self) -> str:
         """Clave de deduplicacion: CUFE si existe, si no nit+numero."""
